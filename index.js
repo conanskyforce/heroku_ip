@@ -8,7 +8,10 @@ express()
   .set('view engine', 'ejs')
   .get('/api/whoami',(req,res) =>{
   	// console.log(req);
-  	const host = req.connection.remoteAddress;
+  	const host = req.headers['x-forwarded-for'] || 
+     req.connection.remoteAddress || 
+     req.socket.remoteAddress ||
+     (req.connection.socket ? req.connection.socket.remoteAddress : null);
   	const lang = req.headers['accept-language'].split(",")[0];
   	const software = req.headers['user-agent'].split(" (")[1].split(") ")[0];
   	var resp = {
