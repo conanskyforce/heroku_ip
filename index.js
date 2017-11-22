@@ -6,7 +6,7 @@ express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
-  .get('api/whoami',(req,res) =>{
+  .get('/api/whoami',(req,res) =>{
   	res.send('idiot')
   } )
   .get('/', (req, res) => res.send('index'))
